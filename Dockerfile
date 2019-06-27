@@ -1,14 +1,14 @@
 FROM ros:melodic-ros-core-stretch
 
 # Update Ubuntu Software repository
-RUN apt-get update
+RUN apt-get -qy update
 
 # Replace shell with bash
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 # Install packages
 # -----------------
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -qy --no-install-recommends \
     # General dependencies \
     python-rosinstall \
     python-rosinstall-generator \
