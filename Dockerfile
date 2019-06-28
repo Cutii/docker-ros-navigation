@@ -15,7 +15,8 @@ RUN apt-get update && apt-get install -qy --no-install-recommends \
     python-wstool \
     build-essential \
     dirmngr \
-    gcc g++   \
+    gcc   \
+    g++   \
     ros-melodic-urdf \
     # rosdep and catkin dependencies
     python-wstool \
@@ -90,14 +91,16 @@ RUN git clone https://github.com/google/protobuf.git \
     && cd build \
     && cmake -G Ninja -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_BUILD_TYPE=Release -Dprotobuf_BUILD_TESTS=OFF ../cmake \
     && ninja \
-    && ninja install 
+    && ninja install \
+    && rm -rf protobuf 
 
 # Install realsense SDK
 # -----------------
 RUN wget https://github.com/IntelRealSense/librealsense/archive/v2.16.0.tar.gz \
     && tar -xzf v2.16.0.tar.gz \
+    && rm v2.16.0.tar.gz -rf \
     && cd librealsense-2.16.0 \
     && mkdir build && cd build \
     && cmake .. -DCMAKE_BUILD_TYPE=Release \
-    && make -j 3 \
+    && make -j 8 \
     && make install 
