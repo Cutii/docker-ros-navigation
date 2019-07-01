@@ -35,7 +35,5 @@ gitlab-runner register --non-interactive \
 
 gitlab-runner run &
 
-git clone git@gitlab.com:yumii-build/cutii-navigation.git
-
 echo "🌍 executing the http server"
 http-server -p 8080
