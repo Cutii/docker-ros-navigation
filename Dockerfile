@@ -108,7 +108,7 @@ RUN wget https://github.com/IntelRealSense/librealsense/archive/v2.16.0.tar.gz \
     && cd librealsense-2.16.0 \
     && mkdir build && cd build \
     && cmake .. -DCMAKE_BUILD_TYPE=Release \
-    && make -j 8 \
+    && make -j 2 \
     && make install
 
 
