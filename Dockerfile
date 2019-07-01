@@ -56,7 +56,7 @@ RUN apt-get update && apt-get install -qy --no-install-recommends \
     libsuitesparse-dev \
     ninja-build \
     libeigen3-dev  \
-    clang \ 
+    clang \
     libcurl4-openssl-dev \
     # Global ROS dependencies \
     ros-melodic-teb-local-planner \
@@ -75,12 +75,18 @@ RUN apt-get update && apt-get install -qy --no-install-recommends \
     libudev-dev \
     libglfw3-dev \
     # Install rust/cargo/cbindgen \
-    curl \ 
+    curl \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-RUN curl https://sh.rustup.rs -sSf | bash -s -- -y   
+RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 RUN source $HOME/.cargo/env \
-    && cargo install --force cbindgen 
+    && cargo install --force cbindgen
+
+# Install gitlab-runner and nodejs
+RUN curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | bash  && \
+    apt-get install -y gitlab-runner && \
+    curl -sL https://deb.nodesource.com/setup_10.x | bash  && \
+    apt-get -y install nodejs rsync
 
 # Install protobuf 3
 # -----------------
@@ -92,7 +98,7 @@ RUN git clone https://github.com/google/protobuf.git \
     && cmake -G Ninja -DCMAKE_POSITION_INDEPENDENT_CODE=ON -DCMAKE_BUILD_TYPE=Release -Dprotobuf_BUILD_TESTS=OFF ../cmake \
     && ninja \
     && ninja install \
-    && rm -rf protobuf 
+    && rm -rf protobuf
 
 # Install realsense SDK
 # -----------------
@@ -103,4 +109,13 @@ RUN wget https://github.com/IntelRealSense/librealsense/archive/v2.16.0.tar.gz \
     && mkdir build && cd build \
     && cmake .. -DCMAKE_BUILD_TYPE=Release \
     && make -j 8 \
-    && make install 
+    && make install
+
+
+COPY go.sh go.sh
+RUN chmod +x go.sh
+RUN npm install -g http-server
+
+WORKDIR /home/gitlab-runner
+
+CMD [ "/go.sh" ]
