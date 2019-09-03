@@ -111,7 +111,6 @@ RUN wget https://github.com/IntelRealSense/librealsense/archive/v2.16.0.tar.gz \
     && make -j 2 \
     && make install
 
-RUN git clone git@gitlab.com:yumii-build/cutii-navigation.git
 
 COPY go.sh go.sh
 RUN chmod +x go.sh
