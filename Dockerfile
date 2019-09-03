@@ -9,7 +9,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 # Install packages
 # -----------------
 RUN apt-get update && apt-get install -qy --no-install-recommends \
-    # General dependencies \
+    # General dependencies 
     python-rosinstall \
     python-rosinstall-generator \
     python-wstool \
@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -qy --no-install-recommends \
     python-wstool \
     python-rosdep \
     ninja-build \
-    # other ros dep (todo : check if needed) \
+    # other ros dep (todo : check if needed) 
     ros-melodic-image-geometry \
     ros-melodic-rviz \
     ros-melodic-pcl-conversions \
@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -qy --no-install-recommends \
     ros-melodic-rotate-recovery \
     ros-melodic-amcl \
     ros-melodic-robot-localization \
-    # Cartographer dependencies \
+    # Cartographer dependencies 
     libgoogle-glog-dev \
     liblua5.3-dev \
     python3-sphinx  \
@@ -58,14 +58,15 @@ RUN apt-get update && apt-get install -qy --no-install-recommends \
     libeigen3-dev  \
     clang \
     libcurl4-openssl-dev \
-    # Global ROS dependencies \
+    # Global ROS dependencies 
     ros-melodic-teb-local-planner \
     ros-melodic-rgbd-launch \
-    # Map Server dependencies \
+    ros-melodic-message-generation \
+    # Map Server dependencies 
     libbullet-dev \
     libsdl1.2-dev \
     libsdl-image1.2-dev \
-    # Realsense S\DK dep \
+    # Realsense SDK dep 
     wget \
     git \
     libssl-dev \
@@ -74,7 +75,7 @@ RUN apt-get update && apt-get install -qy --no-install-recommends \
     libgtk-3-dev \
     libudev-dev \
     libglfw3-dev \
-    # Install rust/cargo/cbindgen \
+    # Install rust/cargo/cbindgen 
     curl \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
