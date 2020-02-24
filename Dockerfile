@@ -75,6 +75,7 @@ RUN apt-get update && apt-get install -qy --no-install-recommends \
     libgtk-3-dev \
     libudev-dev \
     libglfw3-dev \
+    ros-melodic-ddynamic_reconfigure \
     # Install rust/cargo/cbindgen 
     curl \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -103,13 +104,13 @@ RUN git clone https://github.com/google/protobuf.git \
 
 # Install realsense SDK
 # -----------------
-RUN wget https://github.com/IntelRealSense/librealsense/archive/v2.16.0.tar.gz \
-    && tar -xzf v2.16.0.tar.gz \
-    && rm v2.16.0.tar.gz -rf \
-    && cd librealsense-2.16.0 \
+RUN wget https://github.com/IntelRealSense/librealsense/archive/v2.32.1.tar.gz \
+    && tar -xzf v2.32.1.tar.gz  \
+    && rm v2.32.1.tar.gz -rf \
+    && cd librealsense-2.32.1 \
     && mkdir build && cd build \
     && cmake .. -DCMAKE_BUILD_TYPE=Release \
-    && make -j 2 \
+    && make -j 3 \
     && make install
 
 
