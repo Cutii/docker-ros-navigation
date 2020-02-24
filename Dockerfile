@@ -75,7 +75,7 @@ RUN apt-get update && apt-get install -qy --no-install-recommends \
     libgtk-3-dev \
     libudev-dev \
     libglfw3-dev \
-    ros-melodic-ddynamic_reconfigure \
+    ros-melodic-ddynamic-reconfigure \
     # Install rust/cargo/cbindgen 
     curl \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
