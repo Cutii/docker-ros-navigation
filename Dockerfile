@@ -104,10 +104,10 @@ RUN git clone https://github.com/google/protobuf.git \
 
 # Install realsense SDK
 # -----------------
-RUN wget https://github.com/IntelRealSense/librealsense/archive/v2.32.1.tar.gz \
-    && tar -xzf v2.32.1.tar.gz  \
-    && rm v2.32.1.tar.gz -rf \
-    && cd librealsense-2.32.1 \
+RUN wget https://github.com/IntelRealSense/librealsense/archive/v2.38.1.tar.gz \
+    && tar -xzf v2.38.1.tar.gz  \
+    && rm v2.38.1.tar.gz -rf \
+    && cd librealsense-2.38.1 \
     && mkdir build && cd build \
     && cmake .. -DCMAKE_BUILD_TYPE=Release \
     && make -j 3 \
